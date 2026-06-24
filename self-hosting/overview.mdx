@@ -1,0 +1,63 @@
+---
+title: "Self-Hosting the Stranger Things Intro Creator"
+sidebarTitle: "Overview"
+description: "Run your own instance of the Stranger Things Intro Creator on your infrastructure — deploy as a static site with zero backend requirements."
+---
+
+Because the Stranger Things Intro Creator is entirely frontend — every animation is rendered in the browser using HTML5, CSS3, and JavaScript — self-hosting your own instance is as simple as serving static files. There is no server-side processing, no database, and no external API calls required. Any platform or server capable of delivering HTML, CSS, and JS to a browser is sufficient.
+
+## Why Self-Host?
+
+<CardGroup cols={2}>
+  <Card title="Custom Domain" icon="globe">
+    Serve the Intro Creator from your own domain and integrate it seamlessly into your personal or organizational web presence.
+  </Card>
+  <Card title="Offline Use" icon="wifi-slash">
+    Once deployed to a local server or device, the tool works entirely without an internet connection — ideal for offline environments or kiosk setups.
+  </Card>
+  <Card title="White-Label / Fork" icon="code-fork">
+    Customize the branding, color palette, typography, and animation parameters to match your own aesthetic or project requirements.
+  </Card>
+  <Card title="Full Control" icon="lock">
+    Own your infrastructure and data end-to-end. No third-party services, no analytics you didn't add, no dependency on the upstream live site.
+  </Card>
+</CardGroup>
+
+## Architecture
+
+The Stranger Things Intro Creator is a **pure static site**. Its architecture is deliberately minimal:
+
+- **HTML5** — a single entry-point page (`index.html`) that structures the UI
+- **CSS3** — keyframe animations and glow effects that drive the cinematic title sequence
+- **JavaScript (ES6+)** — client-side logic for reading user input and orchestrating animation playback
+- **No database** — user-provided text is never persisted server-side
+- **No external API calls** — all rendering happens in the browser; nothing leaves the user's device
+- **Node.js (v14+)** — required only for local development tooling (bundling, dev server); the final build output is plain static files and does not require Node.js at runtime
+
+Because there is no backend, you can host the project on any static file host — from a $0/month free tier to a self-managed Linux server.
+
+## Deployment Options
+
+| Platform | Best For | Cost |
+|---|---|---|
+| **Vercel** (recommended) | Zero-config deploys with automatic CI/CD on every push | Free tier available |
+| **Netlify** | Easy Git-based deploys with form handling and edge functions if needed later | Free tier available |
+| **GitHub Pages** | Hosting directly from your fork with no additional account | Free with GitHub account |
+| **Nginx / Apache / Caddy** | Self-managed servers where you want full control over the web server config | Infrastructure costs only |
+
+Vercel is the recommended starting point because it auto-detects the project, requires no build configuration, and redeploys automatically whenever you push to the `main` branch.
+
+<Tip>
+  Ready to get started? Head to [Local Development](/self-hosting/local-development) to clone the repo and run the project on your machine, or jump straight to [Deployment](/self-hosting/deployment) if you want to publish a live instance right away.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Local Development" icon="laptop-code" href="/self-hosting/local-development">
+    Clone the repository, install dependencies, and run the dev server on your machine.
+  </Card>
+  <Card title="Deployment" icon="rocket" href="/self-hosting/deployment">
+    Publish your own instance to Vercel, Netlify, GitHub Pages, or a self-managed server.
+  </Card>
+</CardGroup>

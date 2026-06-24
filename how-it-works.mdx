@@ -1,0 +1,78 @@
+---
+title: "How the Stranger Things Intro Animation Works"
+sidebarTitle: "How It Works"
+description: "Discover how Stranger Things Intro Creator renders glowing title sequences entirely in your browser using HTML5, CSS animations, and JavaScript."
+---
+
+Stranger Things Intro Creator is a pure front-end application — there is no back-end server involved in generating or rendering your animation. When you type your text and click **Create**, every step of the sequence from input parsing to final playback happens entirely within your browser using HTML5, CSS3, and vanilla JavaScript. This architecture means zero latency from server round-trips, full offline capability once the page has loaded, and a completely stateless experience where your data never leaves your device. Understanding how those pieces fit together reveals why the tool is as fast and portable as it is.
+
+## Animation Pipeline
+
+The journey from a blank text field to a glowing cinematic title sequence follows a clear sequence of steps, each handled by a distinct layer of the front-end stack.
+
+<Steps>
+  <Step title="User inputs text in the form">
+    The page presents a simple HTML input field where you type the title or phrase you want to animate. JavaScript attaches an event listener to the form's submit action and reads the raw string value from the field when you hit **Create**. No network request is made at this point — the value stays entirely in the browser's memory.
+  </Step>
+  <Step title="JavaScript encodes the text into URL parameters">
+    Immediately after reading the input, the application calls `URLSearchParams` (or equivalent URL manipulation) to serialize your text as a query string appended to the current page URL — for example, `?text=Eleven`. This happens before the animation begins, so the shareable link is ready the moment the sequence starts. Encoding the state in the URL rather than in a database is what makes sharing instant and server-free.
+  </Step>
+  <Step title="CSS keyframes and JavaScript orchestrate the cinematic transitions">
+    The animation engine applies a series of CSS classes to the title element in a timed sequence. Each class maps to a pre-defined `@keyframes` rule that controls opacity, letter-spacing, text-shadow intensity, and color. JavaScript uses `setTimeout` or the Web Animations API to advance through these phases in order — mimicking the slow atmospheric build of the original *Stranger Things* title card, from dark silence to fully illuminated crimson glow.
+  </Step>
+  <Step title="The sequence plays back in the browser using CSS animations and Canvas">
+    Layered effects — such as the ambient glow bleeding outward from each letter — are composited using either layered CSS `box-shadow` / `text-shadow` stacks or HTML5 Canvas drawing calls, depending on the effect. The Canvas API allows pixel-level blending modes that reproduce the soft, slightly over-exposed look of the show's typography. Both rendering paths are GPU-accelerated by modern browsers, keeping the animation smooth even on lower-end hardware.
+  </Step>
+  <Step title="A unique shareable URL is presented to the user">
+    Once the animation is underway, the updated URL in the address bar already contains the encoded parameters. The app may surface a **Copy Link** button that writes this URL to the clipboard. When anyone opens that link, the JavaScript initialization code reads the query parameters on page load, reconstructs the original text, and replays the exact same sequence — making every shared link a self-contained, reproducible experience.
+  </Step>
+</Steps>
+
+## Key Technical Concepts
+
+<AccordionGroup>
+  <Accordion title="In-Browser Rendering">
+    Traditional video-generation tools send your input to a server, render frames, encode a video file, and stream it back to you. Stranger Things Intro Creator skips all of that. CSS animations are interpreted and composited directly by the browser's rendering engine (Blink, Gecko, or WebKit), which offloads frame production to the GPU via hardware-accelerated compositing layers. The result is that a full animation can begin playing in milliseconds rather than seconds, consumes no server resources, and works identically whether you are online or offline after the initial page load.
+  </Accordion>
+  <Accordion title="Shareable URL Encoding">
+    State is encoded in the URL query string using the standard `encodeURIComponent` function, which percent-encodes special characters so that spaces, punctuation, and non-ASCII text all survive being placed in a URL. For example, the text `The Upside Down` becomes `?text=The%20Upside%20Down`. On page load, the initialization script reads `new URLSearchParams(window.location.search)` to retrieve the value and pre-populate the form before triggering the animation. This approach requires no database, no session management, and no server — the URL itself is the storage mechanism.
+  </Accordion>
+  <Accordion title="CSS Glow Effects">
+    The signature red glow is achieved by stacking multiple `text-shadow` declarations on the title element, each with a progressively larger blur radius and a slightly different shade of crimson. A representative rule looks like this:
+
+    ```css
+    .stranger-title {
+      color: #ff0000;
+      text-shadow:
+        0 0 7px #ff0000,
+        0 0 10px #ff0000,
+        0 0 21px #ff0000,
+        0 0 42px #bc1e1e,
+        0 0 82px #bc1e1e,
+        0 0 92px #bc1e1e;
+    }
+    ```
+
+    A `@keyframes` animation then interpolates the `text-shadow` intensity over time — dialing it from zero to full brightness — to create the iconic slow-reveal effect. No image assets or SVG filters are required; the entire glow is produced purely in CSS.
+  </Accordion>
+  <Accordion title="No External Dependencies at Runtime">
+    The tool is intentionally built without runtime JavaScript framework dependencies. There is no React, Vue, or Angular bundle to parse and execute before the page becomes interactive. The production build ships plain HTML, CSS, and a small JavaScript module, which means the initial parse-and-execute time is minimal and the application runs fully offline once the static assets are cached by the browser. This also makes self-hosting straightforward — any web server or CDN that can serve static files is sufficient.
+  </Accordion>
+</AccordionGroup>
+
+## Browser Compatibility
+
+Stranger Things Intro Creator works in all modern browsers without any plugins, extensions, or special configuration:
+
+| Browser | Minimum Supported Version |
+|---|---|
+| Google Chrome | 80+ |
+| Mozilla Firefox | 75+ |
+| Apple Safari | 13.1+ |
+| Microsoft Edge | 80+ |
+
+The application relies exclusively on web-standard APIs (`URLSearchParams`, CSS custom properties, `@keyframes`, and the Canvas 2D API) that have been universally supported across these browsers for several years. No WebGL, WebAssembly, or browser-specific prefixes are required.
+
+<Note>
+  Want to customize colors, timing, fonts, or add new animation phases? The [Customization Guide](/guides/customization) walks through every configurable parameter in the codebase, from tweaking the glow color palette to adjusting the keyframe timing functions for a slower or faster reveal.
+</Note>

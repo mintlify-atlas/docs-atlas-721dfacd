@@ -1,0 +1,74 @@
+---
+title: "Frequently Asked Questions — Stranger Things Intro Creator"
+sidebarTitle: "FAQ"
+description: "Answers to common questions about using, sharing, self-hosting, and contributing to the Stranger Things Intro Creator."
+---
+
+This page collects the most common questions from users and contributors about the Stranger Things Intro Creator — from everyday usage and sharing to self-hosting, development, and contributing back to the project. If you do not find what you are looking for here, see the link at the bottom of the page.
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+
+  <Accordion title="Is this tool completely free?">
+    Yes — the Stranger Things Intro Creator is completely free to use, forever. There is no account, subscription, or payment required. The project is MIT-licensed open-source software, meaning you are also free to fork it, self-host it, and modify it for your own purposes.
+  </Accordion>
+
+  <Accordion title="Does it work on mobile?">
+    Yes. The animation is rendered entirely in the browser using HTML5, CSS3, and JavaScript, so it runs on any modern mobile browser without requiring a native app or additional plugins. Open the site on your phone or tablet and it works just the same as on desktop.
+  </Accordion>
+
+  <Accordion title="What browsers are supported?">
+    The tool supports all modern evergreen browsers: **Chrome**, **Firefox**, **Safari**, and **Edge**. No browser plugins or extensions are needed. Very old browser versions that do not support ES6+ JavaScript or modern CSS animations may not render correctly, but any browser released in the last several years should work without issues.
+  </Accordion>
+
+  <Accordion title="Can I use it offline?">
+    The web app at [strangerthingsintrocreator.com](https://strangerthingsintrocreator.com/) requires an initial internet connection to load the page assets. Once the page has loaded, the animation itself runs entirely on your device — nothing is sent to a server. If you want fully offline access, you can self-host the project locally; once the dev server is running, no internet connection is needed at all.
+  </Accordion>
+
+  <Accordion title="How do shareable links work?">
+    When you generate an intro, your custom text is encoded directly into the URL as a query string parameter — for example, `?text=YourTitleHere`. Sharing that URL with someone gives them an identical view of your intro. No data is transmitted to or stored on any server; the link itself carries all the information needed to recreate the animation.
+  </Accordion>
+
+  <Accordion title="Is my text stored anywhere?">
+    No. The Stranger Things Intro Creator is entirely stateless. Your text exists only in the URL query string and in your browser's address bar. Nothing you type is sent to a backend, saved in a database, or tracked in any way. Once you close the tab, the only record of your text is whatever URL you copied or shared.
+  </Accordion>
+
+  <Accordion title="Can I embed my intro on my website?">
+    You can link anyone directly to your shareable URL and they will see the animation immediately. Direct iframe embedding is technically possible but depends on your specific hosting configuration — there are no built-in embed codes provided by the hosted version of the site. If you need full control over embedding, self-hosting the project and serving it from your own domain gives you the most flexibility.
+  </Accordion>
+
+  <Accordion title="What do I need to run this locally?">
+    You need **Node.js v14 or higher** and **npm** (or **yarn**) installed on your machine. Once those are in place, clone the repository, run `npm install` to install dependencies, and then `npm run dev` to start the local development server. The project is frontend-only — there is no database or backend service to configure.
+  </Accordion>
+
+  <Accordion title="Can I change the colors or font?">
+    Yes, if you fork or clone the repository you can modify the CSS to change any visual aspect of the animation. The default color palette — deep black backgrounds, glowing crimson typography, and the characteristic fade transitions — is intentionally faithful to the Stranger Things title sequence. If you are contributing changes back to the project, please preserve that core aesthetic rather than altering it.
+  </Accordion>
+
+  <Accordion title="Where is the animation code?">
+    All animation logic lives in the main JavaScript file in the repository root. The visual glow effects, fade-in and fade-out timing, and text rendering are driven by CSS keyframe animations defined in the project's stylesheet. Browsing those two files is the quickest way to understand how the intro sequence is constructed and where to make targeted changes.
+  </Accordion>
+
+  <Accordion title="How do I report a bug?">
+    Open a **GitHub Issue** at [github.com/modernharp/StrangerThingsIntroMaker/issues](https://github.com/modernharp/StrangerThingsIntroMaker/issues). Include a clear description of the problem, the steps needed to reproduce it, your browser name and version, and your operating system. If there are any relevant error messages in the browser console, paste those in as well — they make debugging significantly faster.
+  </Accordion>
+
+  <Accordion title="Are there design guidelines for new features?">
+    The guiding principle for any visual change is to keep the retro, cinematic Stranger Things aesthetic intact. New features should complement the glowing red typography and dark, moody atmosphere rather than introducing competing styles or visual noise. If you are unsure whether a design direction fits, open a GitHub Issue to discuss it before building — the community can give early feedback and help shape the approach.
+  </Accordion>
+
+</AccordionGroup>
+
+<Note>
+  If your question is not answered here, open a GitHub Issue at [github.com/modernharp/StrangerThingsIntroMaker](https://github.com/modernharp/StrangerThingsIntroMaker) or check the contributing guide for more detail on getting involved with the project.
+</Note>
+
+<CardGroup cols={2}>
+  <Card title="Contributing Guidelines" icon="code-pull-request" href="/contributing/guidelines">
+    Learn how to fork the repo, follow the development workflow, and open a pull request.
+  </Card>
+  <Card title="Self-Hosting Overview" icon="server" href="/self-hosting/overview">
+    Run the Stranger Things Intro Creator on your own infrastructure or local machine.
+  </Card>
+</CardGroup>

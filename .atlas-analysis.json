@@ -1,0 +1,62 @@
+{
+  "projectType": "saas",
+  "projectName": "Stranger Things Intro Creator",
+  "projectDescription": "A free, browser-based tool that lets anyone generate personalized, cinematic title sequences styled after the iconic glowing red typography and retro aesthetics of Stranger Things.",
+  "theme": "almond",
+  "primaryColor": "#cb1d29",
+  "lightColor": "#590505",
+  "darkColor": null,
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "how-it-works"
+            ]
+          },
+          {
+            "group": "Using the Tool",
+            "pages": [
+              "guides/creating-your-intro",
+              "guides/customization",
+              "guides/sharing"
+            ]
+          },
+          {
+            "group": "Self-Hosting",
+            "pages": [
+              "self-hosting/overview",
+              "self-hosting/local-development",
+              "self-hosting/deployment"
+            ]
+          },
+          {
+            "group": "Contributing",
+            "pages": [
+              "contributing/guidelines",
+              "contributing/faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Transforms custom text into Stranger Things-style animated title sequences with iconic glowing red typography",
+    "Fully in-browser rendering — no server-side video processing required",
+    "No account or sign-up needed — free to use instantly",
+    "Shareable links — generate a unique URL for every custom intro",
+    "80s-inspired cinematic transitions and dramatic visual effects",
+    "MIT-licensed open-source project, contributions welcome"
+  ],
+  "publicApiSurface": [
+    "Live web app at strangerthingsintrocreator.com",
+    "Shareable intro URL (query-string encoded text parameters)",
+    "Clone & run locally with Node.js v14+"
+  ]
+}

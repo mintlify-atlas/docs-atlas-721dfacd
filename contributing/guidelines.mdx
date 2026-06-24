@@ -1,0 +1,115 @@
+---
+title: "Contributing to Stranger Things Intro Creator"
+sidebarTitle: "Guidelines"
+description: "Learn how to contribute code, bug fixes, and improvements to the Stranger Things Intro Creator open-source project on GitHub."
+---
+
+The Stranger Things Intro Creator is a free, MIT-licensed open-source project and contributions of all kinds are warmly welcomed. Whether you want to fix a bug, suggest a new feature, improve the documentation, or clean up the codebase, pull requests are open and encouraged. Every contribution — no matter how small — helps make the tool better for everyone.
+
+## Ways to Contribute
+
+<CardGroup cols={2}>
+  <Card title="Bug Reports" icon="bug">
+    Found something broken? Open a GitHub Issue with clear steps to reproduce the problem, your browser version, and any relevant console output.
+  </Card>
+  <Card title="Feature Requests" icon="lightbulb">
+    Have an idea for new animation options, typography styles, or UI improvements? Open an issue to start the conversation.
+  </Card>
+  <Card title="Code Contributions" icon="code">
+    Fork the repository, create a feature branch, make your changes, and open a pull request against `main`. See the workflow below.
+  </Card>
+  <Card title="Documentation" icon="book">
+    Spotted a gap or an error in the docs? Improvements to written guides and reference pages are just as valuable as code changes.
+  </Card>
+</CardGroup>
+
+## Development Workflow
+
+<Steps>
+  <Step title="Fork the repository on GitHub">
+    Navigate to [github.com/modernharp/StrangerThingsIntroMaker](https://github.com/modernharp/StrangerThingsIntroMaker) and click **Fork** to create your own copy of the project under your GitHub account.
+  </Step>
+  <Step title="Clone your fork locally">
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/StrangerThingsIntroMaker.git
+    cd StrangerThingsIntroMaker
+    ```
+  </Step>
+  <Step title="Create a feature branch">
+    Always work on a dedicated branch rather than committing directly to `main`. Use a descriptive name that reflects what you are building or fixing.
+
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+  </Step>
+  <Step title="Install dependencies and start the dev server">
+    Install the project dependencies and spin up a local development server so you can preview your changes in the browser.
+
+    ```bash
+    npm install
+    npm run dev
+    ```
+  </Step>
+  <Step title="Make your changes">
+    Implement your feature or fix. Keep commits focused on a single concern and write descriptive commit messages (see the guidelines below). Avoid bundling unrelated changes in a single commit.
+  </Step>
+  <Step title="Push your branch and open a pull request">
+    Push your branch to your fork and open a pull request against the `main` branch of the upstream repository. Fill in the PR description template and link any related issues.
+
+    ```bash
+    git push origin feature/your-feature-name
+    ```
+  </Step>
+</Steps>
+
+## Coding Standards
+
+Keeping the codebase clean and consistent makes it easier for everyone to review and maintain:
+
+- **JavaScript** — Write clear, readable ES6+ code. Add inline comments for any complex animation logic or non-obvious timing calculations so future contributors can follow the intent.
+- **CSS** — Changes to styles should preserve the core Stranger Things aesthetic: dark background, crimson glow effects, and the signature retro typography. Avoid introducing color schemes or effects that clash with the established visual identity.
+- **Cross-browser testing** — Before opening a PR, test your changes in Chrome, Firefox, Safari, and Edge. The tool targets all modern evergreen browsers with no plugins required.
+- **Keep it lean** — This is a static, frontend-only site. Avoid adding large third-party dependencies. Prefer native browser APIs and lightweight solutions that keep the page load fast and the bundle small.
+
+## Commit Message Guidelines
+
+Consistent commit messages make the project history easy to scan and automate:
+
+- Use conventional commit prefixes: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`
+- Keep the first line under 72 characters
+- Reference related issue numbers inline with `#123`
+
+**Examples:**
+
+```
+feat: add fade-in timing control to animation options
+fix: correct glow flicker on Safari during title reveal
+docs: expand self-hosting deployment guide
+refactor: extract animation loop into separate module
+```
+
+## Pull Request Checklist
+
+<AccordionGroup>
+  <Accordion title="Before submitting">
+    - The feature or fix has been tested locally and works as expected
+    - No new console errors or warnings are introduced
+    - Code follows the style and conventions described above
+    - CSS changes have been verified to preserve the retro Stranger Things aesthetic
+    - The animation has been tested in at least two modern browsers
+  </Accordion>
+  <Accordion title="PR description">
+    - Clearly describe what changed and explain the reasoning behind the approach
+    - Include before/after screenshots or screen recordings for any visual changes
+    - Note any edge cases or limitations you are aware of
+    - List any manual testing steps a reviewer should run to verify the change
+  </Accordion>
+  <Accordion title="Linking issues">
+    - Reference any related issues in the PR description using `Closes #123` to automatically close the issue when the PR is merged
+    - If the PR partially addresses an issue without fully resolving it, use `Refs #123` instead
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  For major changes — new features, significant refactors, or anything that alters the core animation behavior — please open a GitHub Issue first to discuss the approach before investing time in building it. This helps avoid duplicated effort and ensures the change aligns with the project's direction.
+</Note>

@@ -1,0 +1,122 @@
+---
+title: "Running Stranger Things Intro Creator Locally"
+sidebarTitle: "Local Development"
+description: "Clone the Stranger Things Intro Creator repository and run it on your local machine for development, testing, or customization."
+---
+
+This page walks you through cloning the Stranger Things Intro Creator repository, installing its dependencies, and running the development server so you can explore the code, test changes, or build a customized version on your own machine.
+
+## Prerequisites
+
+Before you begin, make sure you have the following installed:
+
+- **Node.js v14 or higher** — [nodejs.org](https://nodejs.org/). The project's dev tooling requires Node.js; the final static output does not.
+- **npm or yarn** — npm ships with Node.js; install yarn with `npm install -g yarn` if you prefer it.
+- **Git** — [git-scm.com](https://git-scm.com/) for cloning the repository.
+- **A modern browser** — Chrome, Firefox, Edge, or Safari with ES6+ support for previewing the animations.
+
+## Setup
+
+<Steps>
+  <Step title="Clone the repository">
+    Clone the project from GitHub and navigate into the project directory:
+
+    ```bash
+    git clone https://github.com/modernharp/StrangerThingsIntroMaker.git
+    cd StrangerThingsIntroMaker
+    ```
+  </Step>
+
+  <Step title="Install dependencies">
+    Install the project's development dependencies using your preferred package manager:
+
+    <CodeGroup>
+      ```bash npm
+      npm install
+      ```
+
+      ```bash yarn
+      yarn install
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Start the development server">
+    Launch the local dev server with live reload:
+
+    <CodeGroup>
+      ```bash npm
+      npm run dev
+      ```
+
+      ```bash yarn
+      yarn dev
+      ```
+    </CodeGroup>
+  </Step>
+
+  <Step title="Open the app in your browser">
+    Once the dev server starts, open your browser and navigate to:
+
+    ```
+    http://localhost:3000
+    ```
+
+    If port `3000` is already in use on your machine, the dev server will print the actual port it bound to in the terminal output — use that URL instead.
+  </Step>
+</Steps>
+
+## Project Structure
+
+The repository follows a standard frontend project layout:
+
+| Path | Purpose |
+|---|---|
+| `index.html` | Main HTML entry point — the single page the browser loads |
+| `styles/` | CSS files containing the keyframe animations, glow effects, and layout rules |
+| `scripts/` | JavaScript modules that handle user input, animation sequencing, and shareable link generation |
+| `assets/` | Static assets such as fonts and any supplementary images used by the UI |
+| `dist/` or `build/` | Output directory produced by `npm run build` — contains the production-ready static files |
+| `package.json` | Project metadata, scripts, and development dependencies |
+
+## Making Changes
+
+### CSS Customization
+
+The cinematic glow effect is driven by `text-shadow` declarations and CSS keyframe animations. Open the relevant file in `styles/` and look for the keyframe blocks or the class that applies the red glow. You can change the color, intensity, or timing without touching any JavaScript.
+
+Below is an example snippet showing how to adjust the glow color from the classic Stranger Things red to a cool cyan:
+
+```css
+/* Original red glow */
+.intro-text {
+  color: #ff0000;
+  text-shadow:
+    0 0 10px #ff0000,
+    0 0 30px #ff0000,
+    0 0 60px #cc0000;
+}
+
+/* Custom cyan glow */
+.intro-text {
+  color: #00e5ff;
+  text-shadow:
+    0 0 10px #00e5ff,
+    0 0 30px #00b8d4,
+    0 0 60px #0097a7;
+}
+```
+
+Adjust the `0 0 60px` spread radius to increase or decrease how far the light bleeds outward.
+
+### JavaScript
+
+The animation logic — reading the user's input, building the title sequence, and triggering each transition — lives in the main script file under `scripts/`. The code is written in ES6+ and is well-structured around the animation lifecycle (setup → play → loop/end). Look for clearly named functions corresponding to each phase when exploring or extending the behavior.
+
+<Note>
+  If you just want to create a Stranger Things-style intro without any local setup, the live site at [strangerthingsintrocreator.com](https://strangerthingsintrocreator.com/) is always available and requires no installation whatsoever.
+</Note>
+
+## Next Steps
+
+Once you're happy with your changes locally, follow the [Deployment guide](/self-hosting/deployment) to publish your customized instance to Vercel, Netlify, GitHub Pages, or your own server.

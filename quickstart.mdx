@@ -1,47 +1,102 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with Stranger Things Intro Creator"
+sidebarTitle: "Quickstart"
+description: "Create your first personalized Stranger Things-style animated title sequence in under a minute — no account, no install, no setup required."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
+This guide walks you through creating your first glowing, retro-animated title sequence with Stranger Things Intro Creator. If you just want to make an intro and share it, you can go from zero to a finished, shareable link in under sixty seconds using the live app — no installation of any kind required. If you are a developer who wants to run the project locally, extend it, or self-host it, a separate section below covers cloning and running the development server.
 
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+## Using the Live App
 
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+The fastest path to your first Stranger Things-style intro is the hosted version at [strangerthingsintrocreator.com](https://strangerthingsintrocreator.com). No account, no download, no waiting.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Visit the live site">
+    Open [strangerthingsintrocreator.com](https://strangerthingsintrocreator.com) in any modern browser — Chrome, Firefox, Safari, and Edge are all fully supported. The app loads as a static page, so it is ready to use immediately after the assets download.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Type your custom text">
+    Find the text input field on the page and enter the title or phrase you want to animate. This could be your name, a TV show title, a friend's birthday message, or anything else you like. The input accepts plain text and passes it directly into the animation engine.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Hit Create and watch the animation play">
+    Click the **Create** (or equivalent) button to trigger the sequence. The animation will begin immediately in your browser — no rendering delay, no server round-trip. You will see your text appear with the signature slow fade-in and glowing crimson glow effect that mirrors the *Stranger Things* title card.
+  </Step>
+  <Step title="Copy and share your unique URL">
+    Once the animation has started, look at your browser's address bar. The app automatically encodes your custom text into the URL as query parameters, giving your creation a unique link. Copy that URL and share it via message, social media, or email — anyone who opens the link will see the same personalized intro play in their own browser, with no account or app required on their end.
   </Step>
 </Steps>
 
 <Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
-
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+  The live site at [strangerthingsintrocreator.com](https://strangerthingsintrocreator.com) requires absolutely no setup — not even an account. Cloning the repository is only necessary if you want to run a local development environment, make code changes, or self-host your own instance. For everyday use, the hosted app is the easiest and fastest option.
 </Tip>
+
+## Running Locally
+
+Developers who want to modify the source code, contribute improvements, or deploy a self-hosted instance can run the project on their own machine. The setup is lightweight and takes only a few minutes.
+
+### Prerequisites
+
+- **Node.js** v14 or higher — [download from nodejs.org](https://nodejs.org/)
+- **npm** (bundled with Node.js) or **yarn**
+
+### Installation Steps
+
+<Steps>
+  <Step title="Clone the repository">
+    Clone the project from GitHub and navigate into the project directory:
+
+    ```bash
+    git clone https://github.com/modernharp/StrangerThingsIntroMaker.git
+    cd StrangerThingsIntroMaker
+    ```
+  </Step>
+  <Step title="Install dependencies">
+    Install the project's dependencies using your preferred package manager:
+
+    <CodeGroup>
+      ```bash npm
+      npm install
+      ```
+
+      ```bash yarn
+      yarn
+      ```
+    </CodeGroup>
+  </Step>
+  <Step title="Start the development server">
+    Start the local dev server with your preferred package manager:
+
+    <CodeGroup>
+      ```bash npm
+      npm run dev
+      ```
+
+      ```bash yarn
+      yarn dev
+      ```
+    </CodeGroup>
+
+    The terminal will display the local address the server is listening on — typically `http://localhost:3000` or `http://localhost:5173` depending on the build tooling in use.
+  </Step>
+  <Step title="Open the app in your browser">
+    Navigate to the address shown in your terminal output — for example:
+
+    ```
+    http://localhost:3000
+    ```
+
+    You will see the Stranger Things Intro Creator running locally. Any changes you make to the source files will be reflected immediately via hot-module reloading. The local version behaves identically to the live site, including shareable URL generation (links will point to `localhost` while running locally).
+  </Step>
+</Steps>
+
+## What's Next
+
+Now that you have the app running, explore these guides to go further:
+
+<CardGroup cols={2}>
+  <Card title="Creating Your Intro" icon="film" href="/guides/creating-your-intro">
+    Learn the full range of customization options available when crafting your animated title sequence.
+  </Card>
+  <Card title="Self-Hosting Overview" icon="server" href="/self-hosting/overview">
+    Deploy your own instance of Stranger Things Intro Creator on Vercel, Netlify, GitHub Pages, or any static host.
+  </Card>
+</CardGroup>

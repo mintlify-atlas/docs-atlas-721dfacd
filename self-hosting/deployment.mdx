@@ -1,0 +1,131 @@
+---
+title: "Deploying Stranger Things Intro Creator to Production"
+sidebarTitle: "Deployment"
+description: "Deploy your own instance of Stranger Things Intro Creator to Vercel, Netlify, GitHub Pages, or any static hosting platform."
+---
+
+Because the Stranger Things Intro Creator is a pure static site — no server, no database, no backend logic — deployment is straightforward on any platform that can serve static files. Pick the option below that best fits your workflow: a zero-config cloud host like Vercel or Netlify, GitHub Pages for repository-native hosting, or a self-managed web server for full infrastructure control.
+
+## Building for Production
+
+Before deploying, generate an optimized production build:
+
+<CodeGroup>
+  ```bash npm
+  npm run build
+  ```
+
+  ```bash yarn
+  yarn build
+  ```
+</CodeGroup>
+
+The build process bundles and minifies the HTML, CSS, and JavaScript into a static output directory — typically `dist/` or `build/`. This directory contains everything a web server needs to serve the app; no runtime environment is required beyond a standard HTTP server.
+
+## Deploy to Vercel
+
+Vercel is the recommended platform for its zero-config experience and automatic continuous deployment.
+
+<Steps>
+  <Step title="Push your repository to GitHub">
+    Make sure your local repository (including any customizations) is pushed to a GitHub repository under your account.
+  </Step>
+
+  <Step title="Import the repository on Vercel">
+    Go to [vercel.com](https://vercel.com), sign in, and click **Add New → Project**. Select your GitHub repository from the list.
+  </Step>
+
+  <Step title="Accept the auto-detected settings">
+    Vercel automatically detects the framework and pre-fills the build command and output directory. No manual configuration is needed — accept the defaults and proceed.
+  </Step>
+
+  <Step title="Click Deploy">
+    Click **Deploy**. Vercel builds the project and provides you with a live URL within seconds.
+  </Step>
+</Steps>
+
+<Note>
+  Vercel automatically redeploys your site on every push to the `main` branch, so your live instance stays up to date with your repository without any manual steps.
+</Note>
+
+## Deploy to Netlify
+
+<Steps>
+  <Step title="Push your repository to GitHub">
+    Ensure your repository is available on GitHub (or GitLab / Bitbucket — Netlify supports all three).
+  </Step>
+
+  <Step title="Create a new site on Netlify">
+    Log in to [netlify.com](https://netlify.com), click **Add new site**, and select **Import an existing project**. Choose **GitHub** as the Git provider and authorize Netlify if prompted.
+  </Step>
+
+  <Step title="Select the repository and accept defaults">
+    Pick your repository from the list. Netlify will detect the build settings automatically. Confirm the build command and publish directory, then proceed.
+  </Step>
+
+  <Step title="Click Deploy Site">
+    Click **Deploy Site**. Netlify runs the build and publishes the result to a `*.netlify.app` subdomain. You can attach a custom domain from the site settings at any time.
+  </Step>
+</Steps>
+
+## Deploy to GitHub Pages
+
+<Steps>
+  <Step title="Enable GitHub Pages in the repository settings">
+    Navigate to your repository on GitHub, go to **Settings → Pages**, and enable GitHub Pages for the repository.
+  </Step>
+
+  <Step title="Set the publishing source">
+    Choose a source for your Pages deployment:
+    - **`gh-pages` branch** — push your `dist/` output to a dedicated `gh-pages` branch (tools like `gh-pages` npm package automate this).
+    - **`docs/` folder on `main`** — configure your build to output into a `docs/` directory and commit it.
+    - **GitHub Actions** — use a workflow (for example the official `actions/deploy-pages` action) to build and publish automatically on every push.
+  </Step>
+
+  <Step title="Access your deployed site">
+    Once the Pages build completes, your instance will be live at:
+
+    ```
+    https://<your-github-username>.github.io/StrangerThingsIntroMaker/
+    ```
+
+    Replace `<your-github-username>` with your actual GitHub username.
+  </Step>
+</Steps>
+
+## Custom Domain
+
+All three platforms above support custom domains at no extra cost:
+
+1. In your hosting platform's dashboard, navigate to the **Domains** or **Custom Domain** settings for your site and add your domain.
+2. At your DNS registrar, create either:
+   - A **CNAME record** pointing your subdomain (e.g., `intro.yourdomain.com`) to the platform-provided hostname, or
+   - **A records** pointing your apex domain to the platform's IP addresses (refer to your platform's documentation for the exact values).
+3. Wait for DNS propagation (typically a few minutes to a few hours), then verify the domain in the platform dashboard.
+
+## Nginx / Self-Managed Server
+
+If you prefer to run your own web server, copy the production build output to your server and use a minimal Nginx configuration like the following:
+
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
+    root /var/www/StrangerThingsIntroMaker/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+Replace `yourdomain.com` with your actual domain and adjust the `root` path to wherever you placed the `dist/` directory on the server. The `try_files` directive ensures that the single-page app handles all routes correctly.
+
+<Warning>
+  Always serve the Stranger Things Intro Creator over **HTTPS** in production. Browsers increasingly restrict features on insecure origins, and your users' shareable links should be served securely. Use a hosting provider that handles TLS automatically (Vercel, Netlify, and GitHub Pages all do), or configure [Let's Encrypt](https://letsencrypt.org/) with Certbot on your self-managed server.
+</Warning>
+
+## Next Steps
+
+Have an improvement, bug fix, or new feature in mind? See the [Contributing Guidelines](/contributing/guidelines) to learn how to submit a pull request to the upstream project.

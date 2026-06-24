@@ -1,0 +1,59 @@
+---
+title: "Customizing Your Stranger Things Intro Sequence"
+sidebarTitle: "Customization"
+description: "Adjust text content, animation timing, and visual style options to personalize your Stranger Things-style title sequence."
+---
+
+The Stranger Things Intro Creator is built to deliver an authentic 80s title sequence out of the box, but there are several ways to personalize your intro — from the text you enter and how you format it, to deeper CSS-level changes available when you self-host the project. This page covers every customization layer from the simplest text tweaks to hands-on code edits.
+
+## Text Options
+
+The primary way to customize your intro is through the text input itself. A few formatting choices make a noticeable difference in the final result:
+
+- **Multiple lines / multiple title cards** — If the tool provides more than one input field, each field corresponds to a separate title card in the sequence. Use this to build a multi-part intro, such as a subtitle appearing after the main title, or a series of cast names displayed one after another.
+- **Character sets** — The tool supports standard Latin characters. Accented characters (é, ñ, ü, etc.) are generally rendered correctly by the browser, though very unusual Unicode glyphs may not display in the Benguiat-inspired font and will fall back to the browser's serif stack.
+- **Length and formatting** — One to three short words produce the most faithful recreation of the show's title card. Longer phrases shrink the rendered font size to fit the screen, which softens the glow effect and reduces the overall drama. If you need more words, consider splitting them across multiple title cards rather than cramming them into one.
+
+## Visual Style
+
+The aesthetic of the tool is intentionally faithful to the source material and is defined by three core visual elements:
+
+- **Glowing red typography** — Text is set in a Benguiat-inspired serif font at a large display size. The signature red halo is produced by stacking multiple CSS `text-shadow` values at increasing radii, layering a tight bright-red glow over a broader, darker crimson bloom.
+- **Dark cinematic background** — The near-black background maximizes contrast against the red text, reproducing the look of the show's main title card precisely.
+- **Glow intensity** — The iconic red halo is entirely CSS-driven. The multi-layer `text-shadow` technique means no images or canvas drawing are needed; the browser renders the effect natively at any resolution. Because this is core to the tool's identity, the glow style is not exposed as a UI slider — it is consistent by design.
+
+The core visual style matches the show intentionally and cannot be overridden through the tool's web interface. Changing colors, font weight, or glow radius requires editing the source CSS directly (see [Self-Hosting Customization](#self-hosting-customization) below).
+
+## Animation Timing
+
+The animation plays as a continuous sequence of three phases: **fade in → hold → fade out**. The default timing is tuned to mirror the slow, atmospheric pacing of the actual Stranger Things title card — the text lingers on screen long enough to feel deliberate before it fades away.
+
+The tool does not currently expose animation speed controls in the UI. This is a deliberate choice: the fixed, show-accurate timing is central to the cinematic feel. If you self-host the project, you can adjust the keyframe duration values in the CSS to speed up or slow down each phase independently (see the snippet below).
+
+## Self-Hosting Customization
+
+Developers who clone the repository have full access to the underlying CSS and can modify any aspect of the visual style. The most common customizations are:
+
+- **CSS custom properties / variables** — If the stylesheet uses CSS variables (e.g., `--glow-color`, `--bg-color`), updating those values in one place propagates the change across the entire animation.
+- **Keyframe timing** — Adjust the `animation-duration` and `animation-delay` values on the relevant keyframe rules to change how long each phase lasts.
+- **Font choices** — Swap the `font-family` declaration to use a different typeface. Pairing a web font load with `@font-face` lets you use any custom font file you have licensed.
+
+The following snippet shows the core style rules responsible for the glowing red text effect. It is a representative example of the pattern used in the project's stylesheet:
+
+```css
+.title-text {
+  color: #cb1d29;
+  text-shadow: 0 0 20px #cb1d29, 0 0 40px #590505, 0 0 80px #590505;
+  font-family: 'Benguiat', serif;
+  letter-spacing: 0.1em;
+}
+```
+
+- `color: #cb1d29` sets the base text fill to the show's deep crimson red.
+- The first `text-shadow` layer (`0 0 20px #cb1d29`) creates a tight, bright inner glow that matches the text color.
+- The second and third layers (`0 0 40px` and `0 0 80px` in `#590505`) add progressively wider, darker halos that give the glow its depth and warmth.
+- `letter-spacing: 0.1em` replicates the slightly open tracking of the original title card.
+
+<Tip>
+  For deeper customization — changing colors, swapping fonts, or tweaking keyframe timing — fork the repository and edit the CSS directly. The entire visual output is CSS-driven, so nearly any aspect of the look can be changed without touching JavaScript. See the [Local Development guide](/self-hosting/local-development) for instructions on getting the project running on your machine.
+</Tip>

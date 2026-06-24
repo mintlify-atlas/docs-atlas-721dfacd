@@ -1,0 +1,53 @@
+---
+title: "Stranger Things Intro Creator: Cinematic Titles in Your Browser"
+sidebarTitle: "Introduction"
+description: "Stranger Things Intro Creator is a free web tool that generates glowing, retro-animated title sequences — no account or install needed."
+---
+
+Stranger Things Intro Creator is a free, open-source web tool that transforms any text you type into a cinematic, 80s-inspired animated title sequence — complete with the iconic glowing crimson typography and dramatic fade transitions that made the *Stranger Things* opening credits instantly recognizable around the world. Whether you want to surprise a friend with a personalized intro, add a nostalgic flourish to a video project, or simply relive the retro magic of the Upside Down, everything happens directly in your browser. There is no account to create, no software to download, and no server-side rendering waiting on your end — just open the site, type your text, and watch the glow.
+
+## Key Features
+
+<CardGroup cols={2}>
+  <Card title="Iconic Aesthetics" icon="font">
+    Your text is rendered in the unmistakable Stranger Things style: deep-crimson glowing typography, slow cinematic fade-ins, and the retro transition timing that defined the show's opening credits. Every sequence feels pulled straight from Hawkins, Indiana.
+  </Card>
+  <Card title="In-Browser Rendering" icon="display">
+    The entire animation pipeline runs locally on your device. There are no video-encoding servers, no upload queues, and no waiting — playback is instant the moment you hit **Create**, regardless of your internet speed after the initial page load.
+  </Card>
+  <Card title="No Sign-Up Required" icon="circle-check">
+    Stranger Things Intro Creator is 100% free with zero gatekeeping. You do not need an account, an email address, or a subscription of any kind. Open the page, make your intro, and share it — that's the entire flow.
+  </Card>
+  <Card title="Shareable Links" icon="link">
+    Every creation automatically encodes your custom text into the page URL as query parameters. That means each intro gets its own unique link you can copy and paste anywhere — no media files to attach, no downloads to send.
+  </Card>
+</CardGroup>
+
+## Technology
+
+Stranger Things Intro Creator is a pure front-end application with no back-end dependencies at runtime. The full tech stack is:
+
+- **HTML5** — semantic markup and the `<canvas>` element for rendering surfaces where needed
+- **CSS3** — keyframe animations drive every glow pulse, fade-in, and transition; no animation library is required at runtime
+- **JavaScript (ES6+)** — orchestrates the animation sequence, reads user input, and serializes creation parameters into shareable URL query strings
+- **CSS Keyframe Animations / Canvas API** — layered glow effects are achieved through carefully timed `@keyframes` rules combined with canvas compositing, reproducing the signature look of the show's title card
+- **Static Hosting** — the project is deployed as a fully static site (no Node.js server in production), meaning it can be self-hosted on any platform that serves static files, including Vercel, Netlify, or GitHub Pages
+
+Because the application ships as static assets, it loads quickly, works offline after the initial page load, and can be forked and self-hosted with minimal infrastructure.
+
+## Open Source & MIT Licensed
+
+<Note>
+  Stranger Things Intro Creator is released under the **MIT License**, which means you are free to use, copy, modify, and distribute the code for personal or commercial projects. Community contributions are warmly welcomed — if you have an idea for a new feature, a performance improvement, or a bug fix, pull requests are open and encouraged. Head to the [GitHub repository](https://github.com/modernharp/StrangerThingsIntroMaker) to get started.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Create your first animated intro in under a minute, or run the project locally for development and self-hosting.
+  </Card>
+  <Card title="How It Works" icon="gear" href="/how-it-works">
+    Dive into the animation pipeline, URL encoding strategy, and CSS glow techniques that power every sequence.
+  </Card>
+</CardGroup>

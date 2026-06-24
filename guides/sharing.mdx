@@ -1,0 +1,61 @@
+---
+title: "Sharing Your Stranger Things Intro with Shareable Links"
+sidebarTitle: "Sharing"
+description: "Learn how the Stranger Things Intro Creator generates a unique shareable URL for every custom intro, making it easy to send to friends."
+---
+
+Every intro you create on the Stranger Things Intro Creator comes with a unique, shareable URL that is generated automatically the moment you enter your text. The URL encodes everything needed to recreate the animation — so anyone who clicks your link sees the exact same cinematic sequence play in their own browser, with no account, no app download, and no sign-up required on either end.
+
+## How Shareable Links Work
+
+The tool appends your input text as a query parameter in the page URL. When the page loads with that parameter present, the JavaScript reads it and launches the animation immediately, recreating your intro exactly as you made it.
+
+A typical shareable link looks like this:
+
+```text
+https://strangerthingsintrocreator.com/?text=YourName
+```
+
+Replacing `YourName` with whatever you typed in the input field. For multi-word or multi-line intros, the text is URL-encoded — spaces become `%20` (or `+`), and special characters are escaped automatically by the browser when it builds the URL.
+
+Key things to know about how this works:
+
+- **Automatic encoding** — You never have to construct the URL manually. Once you generate an intro, the browser's address bar already contains the correct shareable link.
+- **Instant playback for viewers** — Anyone who opens your link lands directly on the animation; they do not need to type anything or click a separate "play" button.
+- **No account needed** — Neither you nor your viewer needs to create an account or log in. The link is the only thing required to share and view an intro.
+
+## Sharing Your Intro
+
+<Steps>
+  <Step title="Create your intro">
+    Go to [strangerthingsintrocreator.com](https://strangerthingsintrocreator.com/), type your text into the input field, and click **Create** or **Generate** to play the animation. For a detailed walkthrough, see [Creating Your First Stranger Things Intro](/guides/creating-your-intro).
+  </Step>
+  <Step title="Copy the URL from your address bar">
+    After the animation plays, look at your browser's address bar — it already contains your unique shareable link. Click into the address bar and copy the full URL with **Ctrl+C** (Windows/Linux) or **Cmd+C** (macOS).
+  </Step>
+  <Step title="Use the Share button (if available)">
+    If the tool displays a **Share** or **Copy Link** button in the interface, clicking it copies the shareable URL to your clipboard in one step — no need to manually select the address bar.
+  </Step>
+  <Step title="Send it to friends">
+    Paste the copied URL into any messaging platform, social post, or email and send it. Recipients click the link and the animation plays immediately in their browser.
+  </Step>
+</Steps>
+
+## Where to Share
+
+Shareable links work anywhere you can paste a URL:
+
+- **Messaging apps** — Send directly in iMessage, WhatsApp, Telegram, Discord, or any group chat. Most apps unfurl the link with a preview card, making it even easier for friends to click.
+- **Social media** — Post the link on X (Twitter), Facebook, Instagram Stories (via link sticker), Reddit, or TikTok bio. A short caption like "I made a Stranger Things intro — watch to the end 👀" pairs well with it.
+- **Email** — Paste the link into an email body or hyperlink it from a word like "watch this." It works in any email client.
+- **Blog posts and websites** — Embed the link as a standard HTML anchor tag (`<a href="...">`) or as a Markdown link. Readers can click through to watch the animation without leaving your site.
+
+## Privacy
+
+<Note>
+  Shareable links are fully public — anyone who has the URL can view your intro. There is no password protection or access control. Additionally, no data is stored on any server; your text never leaves the browser. The entire intro, including the text content, lives exclusively in the URL itself.
+</Note>
+
+<Tip>
+  Keep your intro text short to keep the URL short. A one- or two-word title produces a clean, easy-to-read link that is less likely to get cut off or wrapped when pasted into messages and social posts.
+</Tip>
