@@ -1,5 +1,5 @@
 ---
-title: "Stranger Things Intro Creator: Cinematic Titles in Your Browser"
+title: "Stranger Things Intro Creator — Cinematic Titles in Browser"
 sidebarTitle: "Introduction"
 description: "Stranger Things Intro Creator is a free web tool that generates glowing, retro-animated title sequences — no account or install needed."
 ---
@@ -27,11 +27,11 @@ Stranger Things Intro Creator is a free, open-source web tool that transforms an
 
 Stranger Things Intro Creator is a pure front-end application with no back-end dependencies at runtime. The full tech stack is:
 
-- **HTML5** — semantic markup and the `<canvas>` element for rendering surfaces where needed
-- **CSS3** — keyframe animations drive every glow pulse, fade-in, and transition; no animation library is required at runtime
+- **HTML5** — semantic markup provides the structure for the page and its interactive form elements
+- **CSS3** — keyframe animations drive every glow pulse, fade-in, and transition, producing the slow atmospheric build of the title sequence
 - **JavaScript (ES6+)** — orchestrates the animation sequence, reads user input, and serializes creation parameters into shareable URL query strings
-- **CSS Keyframe Animations / Canvas API** — layered glow effects are achieved through carefully timed `@keyframes` rules combined with canvas compositing, reproducing the signature look of the show's title card
-- **Static Hosting** — the project is deployed as a fully static site (no Node.js server in production), meaning it can be self-hosted on any platform that serves static files, including Vercel, Netlify, or GitHub Pages
+- **CSS Animations and JavaScript** — layered glow effects are achieved through carefully timed `@keyframes` rules and JavaScript timing, reproducing the signature look of the show's title card
+- **Static Hosting** — the project deploys as a fully static site with no Node.js server required in production, meaning it can be self-hosted on any platform that serves static files
 
 Because the application ships as static assets, it loads quickly, works offline after the initial page load, and can be forked and self-hosted with minimal infrastructure.
 

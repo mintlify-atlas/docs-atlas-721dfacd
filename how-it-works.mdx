@@ -1,5 +1,5 @@
 ---
-title: "How the Stranger Things Intro Animation Works"
+title: "How Stranger Things Intro Creator Animates Your Custom Text"
 sidebarTitle: "How It Works"
 description: "Discover how Stranger Things Intro Creator renders glowing title sequences entirely in your browser using HTML5, CSS animations, and JavaScript."
 ---
@@ -18,10 +18,10 @@ The journey from a blank text field to a glowing cinematic title sequence follow
     Immediately after reading the input, the application calls `URLSearchParams` (or equivalent URL manipulation) to serialize your text as a query string appended to the current page URL — for example, `?text=Eleven`. This happens before the animation begins, so the shareable link is ready the moment the sequence starts. Encoding the state in the URL rather than in a database is what makes sharing instant and server-free.
   </Step>
   <Step title="CSS keyframes and JavaScript orchestrate the cinematic transitions">
-    The animation engine applies a series of CSS classes to the title element in a timed sequence. Each class maps to a pre-defined `@keyframes` rule that controls opacity, letter-spacing, text-shadow intensity, and color. JavaScript uses `setTimeout` or the Web Animations API to advance through these phases in order — mimicking the slow atmospheric build of the original *Stranger Things* title card, from dark silence to fully illuminated crimson glow.
+    The animation engine applies a series of CSS classes to the title element in a timed sequence. Each class maps to a pre-defined `@keyframes` rule that controls opacity, letter-spacing, text-shadow intensity, and color. JavaScript advances through these phases in order — mimicking the slow atmospheric build of the original *Stranger Things* title card, from dark silence to fully illuminated crimson glow.
   </Step>
-  <Step title="The sequence plays back in the browser using CSS animations and Canvas">
-    Layered effects — such as the ambient glow bleeding outward from each letter — are composited using either layered CSS `box-shadow` / `text-shadow` stacks or HTML5 Canvas drawing calls, depending on the effect. The Canvas API allows pixel-level blending modes that reproduce the soft, slightly over-exposed look of the show's typography. Both rendering paths are GPU-accelerated by modern browsers, keeping the animation smooth even on lower-end hardware.
+  <Step title="The sequence plays back in the browser using CSS animations">
+    Layered effects — such as the ambient glow bleeding outward from each letter — are composited using layered CSS `text-shadow` declarations animated with `@keyframes`. Modern browsers GPU-accelerate CSS compositing layers, keeping the animation smooth even on lower-end hardware.
   </Step>
   <Step title="A unique shareable URL is presented to the user">
     Once the animation is underway, the updated URL in the address bar already contains the encoded parameters. The app may surface a **Copy Link** button that writes this URL to the clipboard. When anyone opens that link, the JavaScript initialization code reads the query parameters on page load, reconstructs the original text, and replays the exact same sequence — making every shared link a self-contained, reproducible experience.
@@ -62,16 +62,9 @@ The journey from a blank text field to a glowing cinematic title sequence follow
 
 ## Browser Compatibility
 
-Stranger Things Intro Creator works in all modern browsers without any plugins, extensions, or special configuration:
+Stranger Things Intro Creator works in all modern browsers without any plugins, extensions, or special configuration. Current versions of Chrome, Firefox, Safari, and Edge are all fully supported.
 
-| Browser | Minimum Supported Version |
-|---|---|
-| Google Chrome | 80+ |
-| Mozilla Firefox | 75+ |
-| Apple Safari | 13.1+ |
-| Microsoft Edge | 80+ |
-
-The application relies exclusively on web-standard APIs (`URLSearchParams`, CSS custom properties, `@keyframes`, and the Canvas 2D API) that have been universally supported across these browsers for several years. No WebGL, WebAssembly, or browser-specific prefixes are required.
+The application relies exclusively on web-standard APIs (`URLSearchParams`, CSS custom properties, and `@keyframes` animations) that have been universally supported across modern browsers for several years. No WebGL, WebAssembly, or browser-specific prefixes are required.
 
 <Note>
   Want to customize colors, timing, fonts, or add new animation phases? The [Customization Guide](/guides/customization) walks through every configurable parameter in the codebase, from tweaking the glow color palette to adjusting the keyframe timing functions for a slower or faster reveal.

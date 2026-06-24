@@ -1,7 +1,7 @@
 ---
-title: "Running Stranger Things Intro Creator Locally"
+title: "Stranger Things Intro Creator: Local Development Setup"
 sidebarTitle: "Local Development"
-description: "Clone the Stranger Things Intro Creator repository and run it on your local machine for development, testing, or customization."
+description: "Clone the Stranger Things Intro Creator, install dependencies, and run the dev server locally to explore, test, and customize the code."
 ---
 
 This page walks you through cloning the Stranger Things Intro Creator repository, installing its dependencies, and running the development server so you can explore the code, test changes, or build a customized version on your own machine.
@@ -56,34 +56,28 @@ Before you begin, make sure you have the following installed:
   </Step>
 
   <Step title="Open the app in your browser">
-    Once the dev server starts, open your browser and navigate to:
-
-    ```
-    http://localhost:3000
-    ```
-
-    If port `3000` is already in use on your machine, the dev server will print the actual port it bound to in the terminal output — use that URL instead.
+    Once the dev server starts, check your terminal output for the local URL it printed and open that address in your browser. The exact port depends on the project's configuration and whether any other process is already using that port on your machine.
   </Step>
 </Steps>
 
 ## Project Structure
 
-The repository follows a standard frontend project layout:
+The Stranger Things Intro Creator is a static frontend project. Because the exact directory layout may vary depending on which version or fork you have checked out, refer to the files present after cloning rather than assuming a fixed structure. In general, a project of this type contains:
 
-| Path | Purpose |
-|---|---|
-| `index.html` | Main HTML entry point — the single page the browser loads |
-| `styles/` | CSS files containing the keyframe animations, glow effects, and layout rules |
-| `scripts/` | JavaScript modules that handle user input, animation sequencing, and shareable link generation |
-| `assets/` | Static assets such as fonts and any supplementary images used by the UI |
-| `dist/` or `build/` | Output directory produced by `npm run build` — contains the production-ready static files |
-| `package.json` | Project metadata, scripts, and development dependencies |
+- An HTML entry point that the browser loads directly
+- One or more CSS files containing the keyframe animations, glow effects, and layout rules
+- JavaScript modules that handle user input, animation sequencing, and shareable link generation
+- A package file listing development dependencies and available scripts
+
+<Note>
+  The only file confirmed in the upstream repository is `README.md`. If your clone looks different from what you expect, check the README for the most up-to-date project overview.
+</Note>
 
 ## Making Changes
 
 ### CSS Customization
 
-The cinematic glow effect is driven by `text-shadow` declarations and CSS keyframe animations. Open the relevant file in `styles/` and look for the keyframe blocks or the class that applies the red glow. You can change the color, intensity, or timing without touching any JavaScript.
+The cinematic glow effect is driven by `text-shadow` declarations and CSS keyframe animations. Locate the CSS file responsible for the animation styles and look for the keyframe blocks or the class that applies the red glow. You can change the color, intensity, or timing without touching any JavaScript.
 
 Below is an example snippet showing how to adjust the glow color from the classic Stranger Things red to a cool cyan:
 
@@ -111,7 +105,7 @@ Adjust the `0 0 60px` spread radius to increase or decrease how far the light bl
 
 ### JavaScript
 
-The animation logic — reading the user's input, building the title sequence, and triggering each transition — lives in the main script file under `scripts/`. The code is written in ES6+ and is well-structured around the animation lifecycle (setup → play → loop/end). Look for clearly named functions corresponding to each phase when exploring or extending the behavior.
+The animation logic — reading the user's input, building the title sequence, and triggering each transition — lives in the project's main script file. The code is written in ES6+ and is structured around the animation lifecycle (setup → play → loop/end). Look for clearly named functions corresponding to each phase when exploring or extending the behavior.
 
 <Note>
   If you just want to create a Stranger Things-style intro without any local setup, the live site at [strangerthingsintrocreator.com](https://strangerthingsintrocreator.com/) is always available and requires no installation whatsoever.

@@ -1,7 +1,7 @@
 ---
 title: "Deploying Stranger Things Intro Creator to Production"
 sidebarTitle: "Deployment"
-description: "Deploy your own instance of Stranger Things Intro Creator to Vercel, Netlify, GitHub Pages, or any static hosting platform."
+description: "Deploy a self-hosted Stranger Things Intro Creator to Vercel, Netlify, GitHub Pages, or a self-managed web server — no backend required."
 ---
 
 Because the Stranger Things Intro Creator is a pure static site — no server, no database, no backend logic — deployment is straightforward on any platform that can serve static files. Pick the option below that best fits your workflow: a zero-config cloud host like Vercel or Netlify, GitHub Pages for repository-native hosting, or a self-managed web server for full infrastructure control.
@@ -20,7 +20,7 @@ Before deploying, generate an optimized production build:
   ```
 </CodeGroup>
 
-The build process bundles and minifies the HTML, CSS, and JavaScript into a static output directory — typically `dist/` or `build/`. This directory contains everything a web server needs to serve the app; no runtime environment is required beyond a standard HTTP server.
+The build process bundles and minifies the HTML, CSS, and JavaScript into a static output directory. That directory contains everything a web server needs to serve the app; no runtime environment is required beyond a standard HTTP server. Check your terminal output or the project's README for the exact name of the build output directory.
 
 ## Deploy to Vercel
 
@@ -77,7 +77,7 @@ Vercel is the recommended platform for its zero-config experience and automatic 
 
   <Step title="Set the publishing source">
     Choose a source for your Pages deployment:
-    - **`gh-pages` branch** — push your `dist/` output to a dedicated `gh-pages` branch (tools like `gh-pages` npm package automate this).
+    - **Dedicated branch** — push your build output to a dedicated `gh-pages` branch (tools like the `gh-pages` npm package automate this).
     - **`docs/` folder on `main`** — configure your build to output into a `docs/` directory and commit it.
     - **GitHub Actions** — use a workflow (for example the official `actions/deploy-pages` action) to build and publish automatically on every push.
   </Step>
@@ -111,7 +111,7 @@ If you prefer to run your own web server, copy the production build output to yo
 server {
     listen 80;
     server_name yourdomain.com;
-    root /var/www/StrangerThingsIntroMaker/dist;
+    root /var/www/StrangerThingsIntroMaker/<build-output-directory>;
     index index.html;
 
     location / {
@@ -120,7 +120,7 @@ server {
 }
 ```
 
-Replace `yourdomain.com` with your actual domain and adjust the `root` path to wherever you placed the `dist/` directory on the server. The `try_files` directive ensures that the single-page app handles all routes correctly.
+Replace `yourdomain.com` with your actual domain and replace `<build-output-directory>` with the name of the directory produced by your build step. The `try_files` directive ensures that the single-page app handles all routes correctly.
 
 <Warning>
   Always serve the Stranger Things Intro Creator over **HTTPS** in production. Browsers increasingly restrict features on insecure origins, and your users' shareable links should be served securely. Use a hosting provider that handles TLS automatically (Vercel, Netlify, and GitHub Pages all do), or configure [Let's Encrypt](https://letsencrypt.org/) with Certbot on your self-managed server.
